@@ -1,17 +1,10 @@
-export const titleize = (string: string, mode: 'preserve' | 'lower' | 'upper' = 'preserve'): string => {
+/**
+ * Returns a titleized version of the input string.
+ */
+export const titleize = (string: string, mode?: 'lower'): string => {
   try {
-    const title = string.split(' ').map(w => `${w[ 0 ].toUpperCase()}${w.slice(1)}`).join(' ')
-
-    switch (mode) {
-      case 'preserve':
-        return title
-      case 'lower':
-        return `${title[ 0 ]}${title.slice(1).toLowerCase()}`
-      case 'upper':
-        return title.toUpperCase()
-      default:
-        return title
-    }
+    const title = string.split(' ').map(w => `${w[0].toUpperCase()}${w.slice(1)}`).join(' ')
+    return mode === 'lower' ? `${title[0]}${title.slice(1).toLowerCase()}` : title
   } catch (e) {
     return string
   }
